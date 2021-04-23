@@ -1,0 +1,5 @@
+<h1>Sign In</h1>
+<%= form_with url: 'sign_in' do |f| %>
+  <%= f.text_field :username, required: true, placeholder: 'Enter your username' %> <br><br>
+  <%= f.button :submit %>
+<% end %>

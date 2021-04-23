@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 <h2>Hello <%= @user.username %></h2>
 
-<h3>There are your events:</h3>
+<br>
 
-<p>@user.events</p>
+<h3>There are your events:</h3>
+<p><%= @user.created_events.first.description %></p>
+<hr>
 
 <%= link_to 'Back', users_path %>

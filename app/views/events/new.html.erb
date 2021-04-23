@@ -1,0 +1,8 @@
+<h3>Add a new Event</h3>
+
+<%= form_with model: @event do |f| %>
+
+<%= f.text_field :description %>
+<%= f.submit input_html: {label: "Create"} %>
+
+<% end %>

@@ -2,7 +2,12 @@
 
 <%= form_with model: @event do |f| %>
 
-<%= f.text_field :description %>
+<div class="mb-10">
+  <%= f.text_field :description %>
+</div>
+<div class="mb-10">
+  <%= f.datetime_field :event_date, required: true %>
+</div>
 <%= f.submit input_html: {value: "Create"} %>
 
 <% end %>

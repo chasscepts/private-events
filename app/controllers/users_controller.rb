@@ -11,6 +11,8 @@ class UsersController < ApplicationController
       @user = User.new
       render 'session_form'
     end
+    @users = User.all
+    
   end
 
   # GET /users/new

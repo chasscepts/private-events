@@ -16,4 +16,21 @@
     <p><%= event.description %></p>
     <% end %>
 </div>
+
+<div>
+    <h3>These are events your are:</h3>
+    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+    <p>
+        <%= event.description %>
+        <%= form_with url: event_invitation_index_path do |form| %>
+        <%= form.hidden_field :event_id, value: event.id %>
+        <%= form.select :users, @users.collect { |user| user.username } %>
+        <select>
+            @users.each
+        </select>
+        <%= form.submit "Invite" %>
+        <% end %>
+        <% end %>
+    </p>
+</div>
 <hr>

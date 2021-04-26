@@ -1,5 +1,10 @@
 <p>
+
+    <% Event.past.each do |event| %>
     Event <%= event.id %>:
     <%= event.description %>
+    <br>
+    <% end %>
+
     <%= link_to "Show Event", event_path(event) %>
 </p>

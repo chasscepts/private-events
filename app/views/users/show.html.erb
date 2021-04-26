@@ -4,18 +4,16 @@
 <br>
 
 <div>
-  <h3>These are your upcoming events:</h3>
-  <% (@user.created_events.select { |event| event.event_date > Time.now }).each do |event| %>
+    <h3>These are your upcoming events:</h3>
+    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
     <p><%= event.description %></p>
-  <% end %>
+    <% end %>
 </div>
 
 <div>
-  <h3>These are your past events:</h3>
-  <% (@user.created_events.select { |event| event.event_date < Time.now }).each do |event| %>
+    <h3>These are your past events:</h3>
+    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
     <p><%= event.description %></p>
-  <% end %>
+    <% end %>
 </div>
 <hr>
-
-<%= link_to 'Home', root_path %>

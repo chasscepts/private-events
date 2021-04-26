@@ -42,7 +42,8 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:username]);
     #@user = User.new(username: params[:username])
     if @user.nil?
-      render :new_session
+      render 'session_form'
+
     else
       session[:current_user_id] = @user.id
       redirect_to user_path(@user)

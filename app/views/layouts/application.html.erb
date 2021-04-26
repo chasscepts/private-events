@@ -20,12 +20,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <% if !@user.nil? && !@user.id.nil? %>
                     <li class="nav-item">
                         <%= link_to "Add new Event", new_event_path, class: "nav-link" %>
                     </li>
-                    <% if !@user.nil? %>
                     <li class="nav-item">
                         <%= link_to "Go to my page", user_path(@user), class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Sign out", sign_out_path, class: "nav-link" %>
                     </li>
                     <% else %>
                     <li class="nav-item">

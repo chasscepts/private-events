@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   get 'sign_in', to: 'users#new_session'
+  get 'sign_out', to: 'users#destroy_session'
   post 'sign_in', to: 'users#create_session'
   resources :events, only: [:new, :create, :show]
   root "events#index"

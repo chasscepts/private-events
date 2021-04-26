@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show  ]
+  skip_before_action :verify_authenticity_token
+  before_action :set_user, only: %i[ show ]
 
   # GET /users/1 or /users/1.json
   def show
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
 
   def destroy_session
     #session[:current_user_id] = nil
+    session[:key_to_be_reset] = nil
     reset_session
     redirect_to root_path
 

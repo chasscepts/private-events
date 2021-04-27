@@ -1,6 +1,6 @@
 # README
 
-# Ruby on Rails Blog Project
+# Ruby on Rails Private Events Project
 
 ## Description
 

@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: @user }
         session[:current_user_id] = @user.id
       else
-        format.html { render :new, status: :unprocessable_entity, error: "You can not create such a user."  }
+        format.html { render :new, status: :unprocessable_entity, notice: "You can not create such a user."  }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -45,11 +45,11 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:username]);
     if @user.nil?
       #@error = "Please register"
-      render 'session_form', notice: "Please register"
+      redirect_to sign_in_path, alert: "Please check your username"
 
     else
       session[:current_user_id] = @user.id
-      redirect_to user_path(@user), notice: "You have been succesfully log in"
+      redirect_to user_path(@user)
     end
   end
 

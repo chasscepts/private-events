@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: @user }
         session[:current_user_id] = @user.id
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, error: "You can not create such a user."  }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -43,18 +43,17 @@ class UsersController < ApplicationController
 
   def create_session
     @user = User.find_by_username(params[:username]);
-    #@user = User.new(username: params[:username])
     if @user.nil?
-      render 'session_form'
+      #@error = "Please register"
+      render 'session_form', notice: "Please register"
 
     else
       session[:current_user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "You have been succesfully log in"
     end
   end
 
   def destroy_session
-    #session[:current_user_id] = nil
     session[:key_to_be_reset] = nil
     reset_session
     redirect_to root_path
@@ -62,12 +61,10 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit([:username])
     end

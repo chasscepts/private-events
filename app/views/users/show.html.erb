@@ -1,36 +1,39 @@
-<p id="notice"><%= notice %></p>
 <h2>Hello <%= @user.username %></h2>
 
 <br>
 
 <div>
     <h3>These are your upcoming events:</h3>
-    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
-    <p><%= event.description %></p>
+    <% if !@user.attending_events.empty? %>
+    <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+    <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
+    <hr>
+    <% end %>
     <% end %>
 </div>
 
 <div>
     <h3>These are your past events:</h3>
-    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
-    <p><%= event.description %></p>
+    <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
+    <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
     <% end %>
 </div>
 
 <div>
-    <h3>These are events your are:</h3>
+    <h3>These are events where you are host:</h3>
     <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
-    <p>
+    <div>
         <%= event.description %>
-        <%= form_with url: event_invitation_index_path do |form| %>
+        <%= form_with url: event_invitations_path do |form| %>
         <%= form.hidden_field :event_id, value: event.id %>
-        <%= form.select :users, @users.collect { |user| user.username } %>
-        <select>
-            @users.each
-        </select>
+
+
+        <%= form.collection_select :attendee_id, User.order(:username), :id, :username, include_blank: false %>
+
         <%= form.submit "Invite" %>
+        <p id="notice"><%= notice %></p>
         <% end %>
         <% end %>
-    </p>
+    </div>
 </div>
 <hr>

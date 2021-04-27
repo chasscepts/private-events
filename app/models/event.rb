@@ -9,14 +9,4 @@ class Event < ApplicationRecord
 
   validates :description, presence: true, length: { minimum: 10 }
   validates :event_date, presence: true
-
-  # def self.past
-  #   Event.all.select { |event| !event.event_date.nil? && event.event_date < Time.now }
-  # end
-
-
-  # def self.upcoming
-  #   Event.all.select { |event| !event.event_date.nil? && event.event_date > Time.now }
-  # end
-
 end

@@ -1,39 +1,36 @@
 <h2>Hello <%= @user.username %></h2>
 
-<br>
-
 <div>
-    <h3>These are your upcoming events:</h3>
-    <% if !@user.attending_events.empty? %>
-    <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
-    <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
-    <hr>
-    <% end %>
-    <% end %>
+  <h3>These are your upcoming events:</h3>
+  <% if !@user.attending_events.empty? %>
+  <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+  <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
+  <hr>
+  <% end %>
+  <% end %>
 </div>
 
 <div>
-    <h3>These are your past events:</h3>
-    <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
-    <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
-    <% end %>
+  <h3>These are your past events:</h3>
+  <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
+  <p><%= event.description %>, Hosted by: <%= event.creator.username %></p>
+  <% end %>
 </div>
 
 <div>
-    <h3>These are events where you are host:</h3>
-    <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
-    <div>
-        <%= event.description %>
-        <%= form_with url: event_invitations_path do |form| %>
-        <%= form.hidden_field :event_id, value: event.id %>
+  <h3>These are events where you are host:</h3>
+  <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+  <div>
+    <%= event.description %>
+    <%= form_with url: event_invitations_path do |form| %>
+    <%= form.hidden_field :event_id, value: event.id %>
 
+    <%= form.collection_select :attendee_id, User.order(:username), :id, :username, include_blank: false %>
 
-        <%= form.collection_select :attendee_id, User.order(:username), :id, :username, include_blank: false %>
-
-        <%= form.submit "Invite" %>
-        <p id="notice"><%= notice %></p>
-        <% end %>
-        <% end %>
-    </div>
+    <%= form.submit "Invite" %>
+    <p id="notice"><%= notice %></p>
+    <% end %>
+    <% end %>
+  </div>
 </div>
 <hr>

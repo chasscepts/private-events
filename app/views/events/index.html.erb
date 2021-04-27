@@ -1,59 +1,28 @@
-<br>
-<h3>All Events</h3>
-<p id="notice"><%= notice %></p>
-<div>
-    <!--<h3>These are all upcoming events</h3>
-    <%# Event.upcoming.each do |event| %>
-    Event <%#= event.id %>:
-    <%#= event.description %>
-    <br>
-    Attendance time is:
-    <%#= event.event_date %>
-    <%#= link_to "Show Event", event_path(event) %>
-    <br>
-    <%# end %>-->
+<div class="container">
+  <h3 class="mt-4">Events</h3>
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="tab">
 
-    <% @past_events.each do |event| %>
-    Event <%= event.id %>:
-    <%= event.description %>
-    <br>
-    Attendance time is:
-    <%= event.event_date %>
-    Hosted by: <%= event.creator.username %>
-    <%= link_to "Show Event", event_path(event) %>
-
-    <br>
-    <% end %>
-
-
+</div>
+<div class="row">
+  <% @past_events.each do |event| %>
+    <%= render 'event_view', event: event %>
+  <% end %>
 </div>
 <hr>
 <div>
+  <% @upcoming_events.each do |event| %>
+  Event <%= event.id %>:
+  <%= event.description %>
+  <br>
+  Attendance time is:
+  <%= event.event_date %>
+  Hosted by: <%= event.creator.username %>
+  <%= link_to "Show Event", event_path(event) %>
 
-    <!--<h3>These are all past events</h3>
-    <%# Event.past.each do |event| %>
-    Event <%#= event.id %>:
-    <%#= event.description %>
-    <br>
-    Attendance time is:
-    <%#= event.event_date %>
-    <%#= link_to "Show Event", event_path(event) %>
-    <br>
-    <%# end %>-->
-
-    <% @upcoming_events.each do |event| %>
-    Event <%= event.id %>:
-    <%= event.description %>
-    <br>
-    Attendance time is:
-    <%= event.event_date %>
-    Hosted by: <%= event.creator.username %>
-    <%= link_to "Show Event", event_path(event) %>
-
-    <br>
-    <% end %>
-
-
+  <br>
+  <% end %>
 </div>
 <br>
 <hr>

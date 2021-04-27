@@ -1,0 +1,17 @@
+<div class="event-padding col-4">
+  <article class="event-wrap">
+    <h4 class="event-title">Event <%= event.id %></h4>
+    <p><%= event.description %></p>
+    <div class="event-footer">
+      <div>
+        <span class="event-label">Event Date: </span>
+        <span class="event-value"><%= format_date event.event_date %></span>
+      </div>
+      <div>
+        <span class="event-label">Hosted By: </span>
+        <span class="event-value"><%= event.creator.username %></span>
+      </div>
+      <div class="d-flex justify-content-end mt-3"><%= link_to "Show Event", event_path(event) %></div>
+    </div>
+  </article>
+</div>

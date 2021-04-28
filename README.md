@@ -22,10 +22,17 @@ It contains the authentication (new, create, show) logic for Users which can cre
 4. Node.js
 
 - Clone this repository by copying the link after clicking the "code" button above
-- Run "bundle install" in your computer terminal to install required gems
-- Run "rails server" to start the server
+- Run `bundle install` in your computer terminal to install required gems
+- Run `rails server` to start the server
 - Open in your browser the URL http://localhost:3000/
 - You can now create new users and events, add another users to your events.
+
+## Tests
+
+In order to run the tests you should:
+
+- Open the terminal in the main directory of the project
+- Run `rspec` to start tests.
 
 ## Authors
 

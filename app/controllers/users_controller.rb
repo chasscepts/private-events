@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def create_session
     @user = User.find_by_username(params[:username])
     if @user.nil?
-      redirect_to sign_in_path, alert: "Please check your username"
+      redirect_to sign_in_path, alert: 'Please check your username'
     else
       session[:current_user_id] = @user.id
       redirect_to user_path(@user)

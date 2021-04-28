@@ -14,21 +14,24 @@
  *= require_self
  */
 
- html, body {
-   margin: 0;
-   width: 100vw;
-   box-sizing: border-box;
- }
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  box-sizing: border-box;
+}
 
- *, *::before, *::after {
-   box-sizing: border-box;
- }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
- .mb-10 {
-   margin-bottom: 10px;
- }
+.mb-10 {
+  margin-bottom: 10px;
+}
 
- .tab-header {
+.tab-header {
   display: flex;
 
   a {

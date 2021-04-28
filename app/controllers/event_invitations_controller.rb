@@ -11,9 +11,9 @@ class EventInvitationsController < ApplicationController
     @invitation = EventInvitation.new(event_attendee_id: attendee_id, attended_event_id: event_id)
 
     if @invitation.save
-      redirect_to user_path(@user), notice: "Invitation succesfully has been sent"
+      redirect_to user_path(@user), notice: 'Invitation succesfully has been sent'
     else
-      redirect_to user_path(@user), notice: "Something wrong happened"
+      redirect_to user_path(@user), notice: 'Something wrong happened'
 
     end
   end

@@ -2,17 +2,13 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     id = session[:current_user_id]
-    if !id.nil?
-      @user = User.find(id)
-    end
+    @user = User.find(id) unless id.nil?
   end
 
   def show
     @event = Event.find(params[:id])
     id = session[:current_user_id]
-    if !id.nil?
-      @user = User.find(id)
-    end
+    @user = User.find(id) unless id.nil?
   end
 
   def index
@@ -20,9 +16,7 @@ class EventsController < ApplicationController
     @upcoming_events = Event.upcoming.all
     @events = Event.all
     id = session[:current_user_id]
-    if !id.nil?
-      @user = User.find(id)
-    end
+    @user = User.find(id) unless id.nil?
   end
 
   def create
@@ -38,6 +32,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit([:description, :event_date])
+    params.require(:event).permit(%i[description event_date])
   end
 end

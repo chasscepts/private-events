@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_user, only: %i[ show ]
+  before_action :set_user, only: %i[show]
 
   def show
     id = session[:current_user_id].to_s
@@ -22,11 +22,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
         session[:current_user_id] = @user.id
       else
-        format.html { render :new, status: :unprocessable_entity, notice: "You can not create such a user."  }
+        format.html { render :new, status: :unprocessable_entity, notice: 'You can not create such a user.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def create_session
-    @user = User.find_by_username(params[:username]);
+    @user = User.find_by_username(params[:username])
     if @user.nil?
       redirect_to sign_in_path, alert: "Please check your username"
     else

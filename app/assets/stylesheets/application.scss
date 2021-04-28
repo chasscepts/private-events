@@ -33,13 +33,16 @@
 
   a {
     padding: 7px 15px;
-    background-color: rgb(216, 218, 221);
-    color: $primary;
+    border-bottom: 2px solid #e4ecf1;
+    text-decoration: none;
+    color: inherit;
+    font-size: 16px;
+    text-align: center;
+    min-width: 165px;
 
     &.active {
-      background-color: $primary;
-      color: $light;
       font-weight: bold;
+      border-color: teal;
     }
   }
 }
@@ -50,4 +53,52 @@
   &.active {
     display: block;
   }
+}
+
+.form-card {
+  padding: 30px;
+  margin: 100px auto 0;
+  max-width: 450px;
+  border: 1px solid #e4e4e4;
+  border-radius: 3px;
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #e4e4e4;
+    border: none;
+  }
+}
+
+.event-padding {
+  padding: 5px;
+}
+
+.event-wrap {
+  padding: 10px;
+  border: 1px solid #e4e4e4;
+}
+
+.event-title {
+  margin: 0 0 10px 0;
+}
+
+.event-description {
+  background-color: #f8f9fb;
+}
+
+.event-label {
+  font-weight: bold;
+}
+
+.event-show-wrap {
+  margin-top: 5px;
+}
+
+.p-3px {
+  padding: 3px;
+}
+
+.border-bottom-dotted {
+  border-bottom: 1px dotted #e4e4e4;
 }

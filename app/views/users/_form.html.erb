@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <div class="actions">
+  <div class="actions my-4">
     <%= form.text_field :username, required: true, placeholder: 'Enter Username' %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions d-flex justify-content-end">
+    <%= form.submit 'Register', class: 'btn btn-success text-light px-5'%>
   </div>
 <% end %>

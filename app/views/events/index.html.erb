@@ -1,28 +1,43 @@
-<div class="container">
-  <h3 class="mt-4">Events</h3>
-  <p id="notice"><%= notice %></p>
-</div>
-<div class="tab">
+<div id="home-page">
+  <div class="container-md">
+    <h3 class="mt-4">Events</h3>
+    <p id="notice"><%= notice %></p>
+  </div>
 
+  <div id="home-events-tab" class="tab mt-10 container-md">
+    <div class="tab-header mb-3">
+      <a data-tab-item="future-events" href="javascript:void(0);"class="active">
+        Upcoming Events
+      </a>
+      <a data-tab-item="past-events" href="javascript:void(0);">
+        Past Events
+      </a>
+    </div>
+    <div class="tab-items">
+      <div id="future-events" class="row tab-item active">
+        <div class="row">
+          <% @upcoming_events.each do |event| %>
+            <%= render 'event_view', event: event do %>
+              <div>
+                <span class="event-label">Hosted By: </span>
+                <span class="event-value"><%= event.creator.username %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="past-events" class="tab-item">
+        <div class="row">
+          <% @past_events.each do |event| %>
+            <%= render 'event_view', event: event do %>
+              <div>
+                <span class="event-label">Hosted By: </span>
+                <span class="event-value"><%= event.creator.username %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row">
-  <% @past_events.each do |event| %>
-    <%= render 'event_view', event: event %>
-  <% end %>
-</div>
-<hr>
-<div>
-  <% @upcoming_events.each do |event| %>
-  Event <%= event.id %>:
-  <%= event.description %>
-  <br>
-  Attendance time is:
-  <%= event.event_date %>
-  Hosted by: <%= event.creator.username %>
-  <%= link_to "Show Event", event_path(event) %>
-
-  <br>
-  <% end %>
-</div>
-<br>
-<hr>

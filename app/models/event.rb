@@ -4,8 +4,8 @@ class Event < ApplicationRecord
     has_many :attendees, through: :event_invitations, source: :event_attendee
 
 
-  scope :past, -> { where( "event_date > DATE('now')" ) }
-  scope :upcoming, -> { where( "event_date < DATE('now')"  ) }
+  scope :past, -> { where( "event_date < DATE('now')" ) }
+  scope :upcoming, -> { where( "event_date > DATE('now')"  ) }
 
   validates :description, presence: true, length: { minimum: 10 }
   validates :event_date, presence: true

@@ -1,0 +1,14 @@
+<div class="event-padding col-4">
+  <article class="event-wrap">
+    <h4 class="event-title">Event <%= event.id %></h4>
+    <div class="event-description p-2 mb-2"><%= event.description %></div>
+    <div class="event-footer">
+      <div class="mb-1">
+        <span class="event-label">Event Date: </span>
+        <span class="event-value"><%= format_date event.event_date %></span>
+      </div>
+      <%= yield %>
+      <div class="d-flex justify-content-end mt-2"><%= link_to "View Event", event_path(event) %></div>
+    </div>
+  </article>
+</div>

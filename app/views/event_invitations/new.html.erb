@@ -1,0 +1,9 @@
+<%= form_with(model: invite) do |form| %>
+
+<div class="actions">
+    <%= form.text_field :username, required: true, placeholder: 'Enter Username' %>
+</div>
+<div class="actions">
+    <%= form.submit %>
+</div>
+<% end %>

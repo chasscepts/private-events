@@ -1,0 +1,85 @@
+<div id="user-show-page" class="container-md">
+  <h2 class="mt-3">Hello <%= @user.username.capitalize %></h2>
+
+  <h3 class="h4 mb-3 mt-5 pb-2 border-bottom-dotted">
+    These are the Events you created
+  </h3>
+  <div id="user-created-events" class="tab mt-10">
+    <div class="tab-header mb-3">
+      <a data-tab-item="user-created-future-events" href="javascript:void(0);" class="active">
+        Upcoming Events
+      </a>
+      <a data-tab-item="user-created-past-events" href="javascript:void(0);">
+        Past Events
+      </a>
+    </div>
+    <div class="tab-items">
+      <div id="user-created-future-events" class="row tab-item active">
+        <div class="row">
+          <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+            <%= render 'event', event: event do %>
+              <div class="mt-2">
+                <div class="event-label mb-1">Invite Guest</div>
+                <%= form_with url: event_invitations_path do |form| %>
+                  <%= form.hidden_field :event_id, value: event.id %>
+
+                  <%= form.collection_select :attendee_id, User.order(:username), :id, :username, {include_blank: false}, { class: "p-3px" } %>
+
+                  <%= form.submit "Invite", class: "btn btn-success py-0" %>
+                  <p id="notice"><%= notice %></p>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="user-created-past-events" class="tab-item">
+        <div class="row">
+          <% (@user.created_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
+            <%= render 'event', event: event %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="h4 mb-3 mt-5 pb-2 border-bottom-dotted">
+    These are the Events you are invited to
+  </h3>
+  <div id="user-invited-events" class="tab mt-10">
+    <div class="tab-header mb-3">
+      <a data-tab-item="user-invited-future-events" href="javascript:void(0);" class="active">
+        Upcoming Events
+      </a>
+      <a data-tab-item="user-invited-past-events" href="javascript:void(0);">
+        Past Events
+      </a>
+    </div>
+    <div class="tab-items">
+      <div id="user-invited-future-events" class="row tab-item active">
+        <div class="row">
+          <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date > Time.now }).each do |event| %>
+            <%= render 'event', event: event do %>
+              <div>
+                <span class="event-label">Hosted By: </span>
+                <span class="event-value"><%= event.creator.username %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="user-invited-past-events" class="tab-item">
+        <div class="row">
+          <% (@user.attending_events.select { |event| !event.event_date.nil? && event.event_date < Time.now }).each do |event| %>
+            <%= render 'event', event: event do %>
+              <div>
+                <span class="event-label">Hosted By: </span>
+                <span class="event-value"><%= event.creator.username %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
